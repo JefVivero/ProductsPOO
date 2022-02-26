@@ -58,8 +58,11 @@ namespace ProductsPOO
             Console.WriteLine(product5);
             Console.WriteLine("-------------------------------------------------");
 
-            
-
+            Invoice invoice = new Invoice();
+            invoice.AddProduct(product1);
+            invoice.AddProduct(product3);
+            invoice.AddProduct(product5);
+            Console.WriteLine(invoice);
 
 
 

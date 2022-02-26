@@ -5,21 +5,26 @@ namespace ProductsPOO
     public class ComposedProduct : Product
     {
         public float Discount { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; }        
         public override decimal ValueToPay()
         {
-            return Price + (Price * (decimal)Tax);
+            decimal Total = 0;
+            foreach (Product product in Products)
+            {                
+                Total += product.ValueToPay();
+            }
+            return Total;            
         }
 
         public override string ToString()
         {
             string all="";
-            decimal TotalPay = 0;
+            
             foreach (Product product in Products)
             {
-                all += $"{product.Description},";
-                TotalPay += product.ValueToPay();                
+                all += $"{product.Description},";                             
             }
+            decimal TotalPay= ValueToPay();
 
             TotalPay = TotalPay - (TotalPay * (decimal)Discount);
 
